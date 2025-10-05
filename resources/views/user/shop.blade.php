@@ -345,18 +345,18 @@ document.addEventListener('DOMContentLoaded', function() {
                                                     {img: 'img/men5.jpg', name: 'Classic Tuxedo', btn: 'View'}
                                                 ],
                                                 'Women': [
-                                                    {img: 'img/damit.jpg', name: 'Red Evening Gown', btn: 'Book Now'},
-                                                    {img: 'img/damit.jpg', name: 'Floral Summer Dress', btn: 'View'},
-                                                    {img: 'img/damit.jpg', name: 'Elegant Black Dress', btn: 'View'},
-                                                    {img: 'img/damit.jpg', name: 'Blue Cocktail Dress', btn: 'Book Now'},
-                                                    {img: 'img/damit.jpg', name: 'Classic White Gown', btn: 'View'}
+                                                    {img: 'img/women1.jpg', name: 'Red Evening Gown', btn: 'Book Now'},
+                                                    {img: 'img/women2.jpg', name: 'Floral Summer Dress', btn: 'View'},
+                                                    {img: 'img/women3.jpg', name: 'Elegant Black Dress', btn: 'View'},
+                                                    {img: 'img/women4.jpg', name: 'Blue Cocktail Dress', btn: 'Book Now'},
+                                                    {img: 'img/women5.jpg', name: 'Classic White Gown', btn: 'View'}
                                                 ],
                                                 'Kids': [
-                                                    {img: 'img/damit.jpg', name: 'Boys Suit Set', btn: 'Book Now'},
-                                                    {img: 'img/damit.jpg', name: 'Girls Party Dress', btn: 'View'},
-                                                    {img: 'img/damit.jpg', name: 'Kids Tuxedo', btn: 'View'},
-                                                    {img: 'img/damit.jpg', name: 'Flower Girl Dress', btn: 'Book Now'},
-                                                    {img: 'img/damit.jpg', name: 'Boys Blazer', btn: 'View'}
+                                                    {img: 'img/kids1.jpg', name: 'Boys Suit Set', btn: 'Book Now'},
+                                                    {img: 'img/kids2.jpg', name: 'Girls Party Dress', btn: 'View'},
+                                                    {img: 'img/kids3.jpg', name: 'Kids Tuxedo', btn: 'View'},
+                                                    {img: 'img/kids4.jpg', name: 'Flower Girl Dress', btn: 'Book Now'},
+                                                    {img: 'img/kids5.jpg', name: 'Boys Blazer', btn: 'View'}
                                                 ],
                                                 'Accesories': [
                                                     {img: 'img/damit.jpg', name: 'Gold Necklace', btn: 'Book Now'},
