@@ -366,11 +366,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                                     {img: 'img/ace5.jpg', name: 'Classic Watch', btn: 'View'}
                                                 ],
                                                 'Shoes': [
-                                                    {img: 'img/damit.jpg', name: 'Black Oxford Shoes', btn: 'Book Now'},
-                                                    {img: 'img/damit.jpg', name: 'Red Heels', btn: 'View'},
-                                                    {img: 'img/damit.jpg', name: 'White Sneakers', btn: 'View'},
-                                                    {img: 'img/damit.jpg', name: 'Brown Loafers', btn: 'Book Now'},
-                                                    {img: 'img/damit.jpg', name: 'Blue Sandals', btn: 'View'}
+                                                    {img: 'img/shoe1.jpg', name: 'Black Oxford Shoes', btn: 'Book Now'},
+                                                    {img: 'img/shoe2.jpg', name: 'Red Heels', btn: 'View'},
+                                                    {img: 'img/shoe3.jpg', name: 'White Sneakers', btn: 'View'},
+                                                    {img: 'img/shoe4.jpg', name: 'Brown Loafers', btn: 'Book Now'},
+                                                    {img: 'img/shoe5.jpg', name: 'Blue Sandals', btn: 'View'}
                                                 ]
                                             };
                                             const products = productMap[cat] || [];
