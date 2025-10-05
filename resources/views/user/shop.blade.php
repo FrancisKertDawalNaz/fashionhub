@@ -359,11 +359,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                                     {img: 'img/kids5.jpg', name: 'Boys Blazer', btn: 'View'}
                                                 ],
                                                 'Accesories': [
-                                                    {img: 'img/damit.jpg', name: 'Gold Necklace', btn: 'Book Now'},
-                                                    {img: 'img/damit.jpg', name: 'Pearl Earrings', btn: 'View'},
-                                                    {img: 'img/damit.jpg', name: 'Leather Belt', btn: 'View'},
-                                                    {img: 'img/damit.jpg', name: 'Silk Scarf', btn: 'Book Now'},
-                                                    {img: 'img/damit.jpg', name: 'Classic Watch', btn: 'View'}
+                                                    {img: 'img/ace1.jpg', name: 'Gold Necklace', btn: 'Book Now'},
+                                                    {img: 'img/ace2.jpg', name: 'Pearl Earrings', btn: 'View'},
+                                                    {img: 'img/ace3.jpg', name: 'Leather Belt', btn: 'View'},
+                                                    {img: 'img/ace4.jpg', name: 'Silk Scarf', btn: 'Book Now'},
+                                                    {img: 'img/ace5.jpg', name: 'Classic Watch', btn: 'View'}
                                                 ],
                                                 'Shoes': [
                                                     {img: 'img/damit.jpg', name: 'Black Oxford Shoes', btn: 'Book Now'},
