@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    
 
 
 </head>
@@ -33,7 +34,7 @@
     <script>
         Swal.fire({
             icon: 'success',
-            title: '{{ session('success') }}',
+            title: {!! json_encode(session('success')) !!},
             showConfirmButton: false,
             timer: 2000
         });
@@ -45,78 +46,82 @@
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: '{{ $errors->first() }}',
+            text: {!! json_encode($errors->first()) !!},
         });
     </script>
     @endif
 
     <script>
-document.getElementById('aiChatBtn').addEventListener('click', function() {
-    alert('AI Chatbot will open here!'); // Replace with your chatbot integration
-});
+// Guard DOM lookups to prevent errors on pages that don't include the chatbot elements.
+;(function () {
+    const aiChatBtn = document.getElementById('aiChatBtn');
+    const fashionBot = document.getElementById('fashionBot');
+    const closeBot = document.getElementById('closeBot');
+    const sendBotBtn = document.getElementById('sendBotBtn');
+    const botInput = document.getElementById('botInput');
+    const botBody = document.getElementById('botBody');
 
-const aiChatBtn = document.getElementById('aiChatBtn');
-const fashionBot = document.getElementById('fashionBot');
-const closeBot = document.getElementById('closeBot');
-const sendBotBtn = document.getElementById('sendBotBtn');
-const botInput = document.getElementById('botInput');
-const botBody = document.getElementById('botBody');
+    if (!aiChatBtn) return; // nothing to wire on this page
 
-aiChatBtn.addEventListener('click', () => {
-    fashionBot.style.display = 'flex';
-});
+    aiChatBtn.addEventListener('click', function() {
+        if (fashionBot) fashionBot.style.display = 'flex';
+        else alert('AI Chatbot will open here!'); // fallback behavior
+    });
 
-closeBot.addEventListener('click', () => {
-    fashionBot.style.display = 'none';
-});
-
-sendBotBtn.addEventListener('click', sendMessage);
-botInput.addEventListener('keypress', function(e){
-    if(e.key === 'Enter') sendMessage();
-});
-
-async function sendMessage() {
-    const msg = botInput.value.trim();
-    if (!msg) return;
-
-    sendBotBtn.disabled = true;
-    const userMsg = document.createElement('div');
-    userMsg.classList.add('bot-message');
-    userMsg.style.background = '#ffecd1';
-    userMsg.style.alignSelf = 'flex-end';
-    userMsg.textContent = msg;
-    botBody.appendChild(userMsg);
-    botBody.scrollTop = botBody.scrollHeight;
-    botInput.value = '';
-
-    const botReply = document.createElement('div');
-    botReply.classList.add('bot-message');
-    botReply.textContent = "Fashionbot is typing...";
-    botBody.appendChild(botReply);
-    botBody.scrollTop = botBody.scrollHeight;
-
-    try {
-        const response = await fetch('/chat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-            },
-            body: JSON.stringify({ message: msg })
+    if (closeBot && fashionBot) {
+        closeBot.addEventListener('click', () => {
+            fashionBot.style.display = 'none';
         });
+    }
 
-        const data = await response.json();
-        botReply.textContent = data.reply;
+    async function sendMessage() {
+        if (!botInput || !botBody || !sendBotBtn) return;
+        const msg = botInput.value.trim();
+        if (!msg) return;
+
+        sendBotBtn.disabled = true;
+        const userMsg = document.createElement('div');
+        userMsg.classList.add('bot-message');
+        userMsg.style.background = '#ffecd1';
+        userMsg.style.alignSelf = 'flex-end';
+        userMsg.textContent = msg;
+        botBody.appendChild(userMsg);
+        botBody.scrollTop = botBody.scrollHeight;
+        botInput.value = '';
+
+        const botReply = document.createElement('div');
+        botReply.classList.add('bot-message');
+        botReply.textContent = "Fashionbot is typing...";
+        botBody.appendChild(botReply);
         botBody.scrollTop = botBody.scrollHeight;
 
-    } catch (err) {
-        botReply.textContent = "Fashionbot: Sorry, something went wrong 😔";
-    }finally {
-        sendBotBtn.disabled = false;
-    }
-}
+        try {
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({ message: msg })
+            });
 
+            const data = await response.json();
+            botReply.textContent = data.reply;
+            botBody.scrollTop = botBody.scrollHeight;
+
+        } catch (err) {
+            botReply.textContent = "Fashionbot: Sorry, something went wrong 😔";
+        } finally {
+            sendBotBtn.disabled = false;
+        }
+    }
+
+    if (sendBotBtn) sendBotBtn.addEventListener('click', sendMessage);
+    if (botInput) botInput.addEventListener('keypress', function(e){ if(e.key === 'Enter') sendMessage(); });
+})();
 </script>
+    @stack('scripts')
+
 </body>
 
 </html>

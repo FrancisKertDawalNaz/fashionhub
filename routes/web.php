@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\fashionController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,9 @@ use App\Http\Controllers\ChatController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::post('/chat', [ChatController::class, 'chat'])->name('chat');
+Route::post('/cart/store', [CartController::class, 'store'])->name('cart.store');
+
+
 
 // Public product details page (clean URL)
 Route::get('/product', function (\Illuminate\Http\Request $request) {
@@ -34,7 +38,7 @@ Route::get('/product', function (\Illuminate\Http\Request $request) {
         'img' => $request->query('img', ''),
         'name' => $request->query('name', ''),
         'desc' => $request->query('desc', ''),
-        'price' => $request->query('price', ''),
+        'price' => $request->query('price', 0) ?: 0,
         'inclusions' => json_decode($request->query('inclusions', '[]'), true),
         'shop' => $request->query('shop', 'Shop 1'),
         'size' => $request->query('size', 'Medium Size'),
@@ -67,3 +71,4 @@ Route::post('/logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
+
