@@ -15,17 +15,34 @@
 
         <!-- RIGHT -->
         <div class="col-md-7 p-4">
-          <h4 id="productName">{{ $product['name'] ?? 'Product Name' }}</h4>
+          @php
+            $rawPrice = $product[''] ?? 1500;
+            // If price contains currency symbol or commas (e.g., "₱1,200"), sanitize to numeric
+            if (is_numeric($rawPrice)) {
+                $priceNumeric = (float) $rawPrice;
+            } else {
+                $clean = str_replace(',', '', $rawPrice);
+                $clean = preg_replace('/[^0-9\.]/', '', $clean);
+                $priceNumeric = $clean !== '' ? (float) $clean : 0.0;
+            }
+          @endphp
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div>
+              <h4 id="productName" class="fw-bold mb-1">{{ $product['name'] ?? 'Product Name' }}</h4>
+              <div class="small text-muted">Shop: <span id="productShop">{{ $product['shop'] ?? 'Shop 1' }}</span></div>
+            </div>
+            <div class="text-end">
+              <div class="h4 mb-0 text-dark">₱ <span id="productPrice">{{ number_format($priceNumeric, 2, '.', ',') }}</span></div>
+            </div>
+          </div>
           <p id="productDesc">{{ $product['desc'] ?? '' }}</p>
-          <div>₱<span id="productPrice">{{ $product['price'] ?? '1500' }}</span></div>
-          <div>Shop: <span id="productShop">{{ $product['shop'] ?? 'Shop 1' }}</span></div>
 
           <div class="mt-3">
             <form id="cartForm" action="{{ route('cart.store') }}" method="POST" class="w-100">
               @csrf
               <input type="hidden" name="product_id" value="{{ $product['id'] ?? 1 }}">
               <input type="hidden" name="name" value="{{ $product['name'] ?? '' }}">
-              <input type="hidden" name="price" value="{{ $product['price'] ?? 0 }}">
+              <input type="hidden" name="price" value="{{ $priceNumeric }}">
               <input type="hidden" name="image" value="{{ $product['img'] ?? '' }}">
               <input type="hidden" name="shop" value="{{ $product['shop'] ?? '' }}">
               <input type="hidden" name="qty" id="qtyInput" value="1">
@@ -35,8 +52,8 @@
                 style="
     background: linear-gradient(135deg, #111, #333);
     border: none;
-    border-radius: 12px;
-    padding: 12px 0;
+    border-radius: 10px;
+    padding: 10px 20px;
     color: #fff;
     font-size: 1rem;
     letter-spacing: 0.5px;

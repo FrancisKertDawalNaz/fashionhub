@@ -536,6 +536,7 @@
       <div style="font-size:15px;font-weight:600;margin:10px 0 8px 0;color:#222;white-space:normal;text-align:center;line-height:1.3;">
           ${prod.name}
       </div>
+      <div style="font-size:14px;color:#111;font-weight:700;margin-bottom:6px;text-align:center;">${prod.price}</div>
       
       <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
           <button class="btn btn-sm" 

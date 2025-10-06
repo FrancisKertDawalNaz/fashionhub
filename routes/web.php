@@ -38,7 +38,7 @@ Route::get('/product', function (\Illuminate\Http\Request $request) {
         'img' => $request->query('img', ''),
         'name' => $request->query('name', ''),
         'desc' => $request->query('desc', ''),
-        'price' => $request->query('price', 0) ?: 0,
+        'price' => $request->query('price', ''),
         'inclusions' => json_decode($request->query('inclusions', '[]'), true),
         'shop' => $request->query('shop', 'Shop 1'),
         'size' => $request->query('size', 'Medium Size'),
